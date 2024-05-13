@@ -79,6 +79,72 @@
     font-style: italic;
   }
 
+  /* variables */
+
+
   /* */
 
+  :root {
+    --loginBackground: rgb(223, 175, 73);
+    --loginBackgroundForm: rgb(233, 199, 125);
+  }
+
+  .loginMainContainer {
+    background-color: var(--loginBackground);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loginMainContainer .loginSection {
+    background-color: var(--loginBackgroundForm);
+    width: 85%;
+    height: 80%;
+    display: flex;
+    border-radius: 0.2em;
+  }
+
+  .loginMainContainer section div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5em 0 0.5em 0;
+  }
+
+  .loginMainContainer div .login-title {
+    display: inline-block;
+    height: auto; 
+    font-size: larger;
+    width: 50%;
+  }
+
+  .formLogin {
+    display: flex;
+    flex-direction: column;
+    font-size: larger;
+    width: 50%;
+    align-items: left;
+    
+  }
+
+  .formLogin input {
+    height: 3.2em;
+    width: 80%;
+  }
+
+  .formLogin label {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  .formLogin .login-bottom {
+    margin-top: 1em;
+    height: 3em;
+    width: 50%;
+  }
   
