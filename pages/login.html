@@ -15,22 +15,24 @@
                 <div class="login-title">
                     <h1>Ingresa tus datos</h1>
                 </div>
-                <form class="formLogin">
+                <form class="formLogin" id="formLogin">
                     <label>Ingrese su nombre de usuario</label>
-                    <input type="text" name="text">
+                    <input type="text" name="username">
                     <label>Ingrese su email</label>
-                    <input type="email" name="email">
+                    <input type="text" name="email">
                     <label>Ingrese su contraseña</label>
                     <input type="password" name="pass1">
                     <label>Ingrese su contraseña nuevamente</label>
                     <input type="password" name="pass2">
                     <button class="login-bottom">Ingresar</button>
                 </form>
+                <p id="login-message"></p>
             </div>
-            
+
 
         </section>
     </main>
     
+    <script src="../js/login.js"></script>
 </body>
 </html>

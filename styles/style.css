@@ -122,6 +122,9 @@
     font-size: larger;
     width: 50%;
   }
+  .loginMainContainer div p {
+    display: inline;
+  }
 
   .formLogin {
     display: flex;
