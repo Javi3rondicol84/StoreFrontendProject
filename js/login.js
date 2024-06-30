@@ -1,5 +1,4 @@
 "use strict";
-
 const url = "http://localhost:8080/users/";
 
 let formLogin = document.querySelector("#formLogin");
@@ -31,10 +30,10 @@ async function logging(e) {
             console.log(email);
             console.log(pass1);
 
+            let encriptedpass;
             let found = users.some(user =>
-                user.userName == username &&
-                user.password == pass1 &&
-                user.email == email 
+                user.userName == username,
+                
             );
 
             users.forEach(element => {
@@ -47,10 +46,14 @@ async function logging(e) {
             }
 
             if (found) {
-                loginmessage.innerHTML = "Te has ingresado correctamente.";
-                setTimeout(() => {
-                    window.location.href = "../index.html";
-                }, 2000);
+
+                if(bcrypt.compare(pass1, userfound.password)) {
+                    loginmessage.innerHTML = "Te has ingresado correctamente.";
+                    setTimeout(() => {
+                        window.location.href = "../index.html";
+                    }, 2000);
+                }
+
             } else {
                 loginmessage.innerHTML = "El usuario no existe.";
             }
