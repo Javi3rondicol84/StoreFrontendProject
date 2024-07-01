@@ -1,7 +1,8 @@
 "use strict";
-const url = "http://localhost:8080/users/";
+const url = "http://localhost:8080/users/exists";
 
 let formLogin = document.querySelector("#formLogin");
+let loginmessage = document.querySelector("#login-message");
 
 if (formLogin) {
     formLogin.addEventListener("submit", logging);
@@ -9,59 +10,44 @@ if (formLogin) {
 
 async function logging(e) {
     e.preventDefault();
+    loginmessage.innerHTML = "";
     let formData = new FormData(formLogin);
-    let loginmessage = document.querySelector("#login-message");
 
     let username = formData.get('username');
-    let email = formData.get('email');
-    let pass1 = formData.get('pass1');
-    let pass2 = formData.get('pass2');
+    let pass = formData.get('pass');
 
-    loginmessage.innerHTML = "";
-
-
-    try {
-        let response = await fetch(url);
-
-        if (response.ok) {
-            let users = await response.json();
-            console.log(users);
-            console.log(username);
-            console.log(email);
-            console.log(pass1);
-
-            let encriptedpass;
-            let found = users.some(user =>
-                user.userName == username,
-                
-            );
-
-            users.forEach(element => {
-               console.log(element.userName); 
-            });
-
-            if (pass1 !== pass2) {
-                loginmessage.innerHTML = "Las contraseñas no coinciden.";
-                return;
-            }
-
-            if (found) {
-
-                if(bcrypt.compare(pass1, userfound.password)) {
-                    loginmessage.innerHTML = "Te has ingresado correctamente.";
-                    setTimeout(() => {
-                        window.location.href = "../index.html";
-                    }, 2000);
-                }
-
-            } else {
-                loginmessage.innerHTML = "El usuario no existe.";
-            }
-        } else {
-            loginmessage.innerHTML = "Error al conectarse al servidor.";
-        }
-    } catch (error) {
-        console.log(error);
-        loginmessage.innerHTML = "Error de red.";
+    let data = {
+        "userName": username,
+        "password": pass
     }
+    
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(data),
+        });
+
+        if(!response.ok) {
+            loginmessage.innerHTML = "El username o la contraseña son incorrectos";
+        }
+        else {
+            loginmessage.innerHTML = "El usuario se ingreso correctamente";
+
+            setTimeout(() => {
+                window.location.href = "../index.html"
+            }, 1250);
+            
+        }
+
+    }
+    catch(error) {
+        console.log(error);
+    }
+
+
+  
+       
 }
