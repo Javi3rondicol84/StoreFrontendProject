@@ -5,6 +5,7 @@
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
+    color: #fff;
 }
 
 .roboto-thin {
@@ -88,7 +89,11 @@
     --loginBackground: rgb(223, 175, 73);
     --loginBackgroundForm: rgb(233, 199, 125);
     --navBackground: rgb(247, 204, 112);
+    --webBackground: rgb(228, 196, 128);
     --blackBackground: rgb(7, 6, 6);
+
+    --mainColor: #33960F;
+    --secondaryColor: #000;
   }
 
   .loginMainContainer {
@@ -160,7 +165,7 @@
 
 header {
   display: flex;
-  background-color: var(--navBackground);
+  background-color: var(--secondaryColor);
   height: 3em;
 }
 
@@ -187,7 +192,7 @@ nav ul li a:hover {
 
 a {
   text-decoration: none;
-  color: black;
+  color: rgb(255, 255, 255);
 }
 
 .navLogo {
@@ -230,7 +235,6 @@ main {
   flex-direction: column;
   width: 100%;
   align-items: center;
-  margin-top: 1em;
 }
 
 .description {
@@ -256,11 +260,16 @@ main {
 }
 
 .carousel {
-  background-color: var(--navBackground);
+  background-color: #175500;
   display: flex;
   margin-top: 2em;
   flex-direction: column;
   /*border: 0.2em solid #000;*/
+  border-radius: 0.125em;
+}
+
+.carousel h2 {
+  color: #fff;
 }
 
 .carousel:last-child {
@@ -279,13 +288,15 @@ main {
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  margin-bottom: 0.1em;
+  border-radius: 0.125em;
 }
 
+.card p {
+  color: var(--secondaryColor);
+}
 .imgCard {
   width: 100%;
   height: 50%;
-  background-color: greenyellow;
 }
 
 .imgCard img {
@@ -295,13 +306,13 @@ main {
 
 .titleCard {
   height: 25%;
-  background-color: aqua;
   padding: 0.2em;
+  font-size: 1.2em;
 }
 
 .priceCard {
   height: 25%;
-  background-color: brown;
+  font-size: 1.5em;
   padding: 0.125em;
 }
 
@@ -309,13 +320,13 @@ main {
 /* footer section */
 
 footer {
-  margin-top: 0.2em;
   width: 100%;
   height: 15em;
   background-color: var(--blackBackground);
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 2em;
 }
 
 footer p {
