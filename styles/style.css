@@ -166,7 +166,7 @@
 header {
   display: flex;
   background-color: var(--secondaryColor);
-  height: 3em;
+  flex-direction: column;
 }
 
 nav {
@@ -202,6 +202,38 @@ a {
 .navLogo img {
   height: 100%;
   width: 100%;
+}
+
+/* search button */
+
+.search {
+  height: 4em;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.search form {
+  width: 20em;
+  display: flex;
+}
+
+.search input {
+  height: 90%;
+  width: 80%;
+  color: #000;
+}
+
+.search button {
+  border: 0;
+  height: 90%;
+  width: 20%;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.search img {
+  width: 3em;
 }
 
 /* main section */
