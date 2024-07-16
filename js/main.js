@@ -69,7 +69,7 @@ async function showCardsByCategory(categories) {
                             <p>${product.productName}</p>
                         </div>
                         <div class="priceCard">
-                            <p>$${product.price}}</p>
+                            <p>$${product.price}</p>
                         </div>
                     </div>
     
