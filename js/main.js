@@ -5,104 +5,84 @@ const api = "http://localhost:8080/products/"
 //all carousels
 let carouselsdiv = document.querySelector("#carousels");
 
-let dos = 2;
-
 setAllCarousels();
 
-
 async function setAllCarousels() {
+    let categories = [];
 
+    carouselsdiv.innerHTML += "";
         try {
             //let response = await fetch(api+"limit?limitValue=5");
             let response = await fetch(api+"categories/");
 
             if(!response.ok) {
-                alert("no se pudo traer la respuesta");
+                console.log("no se pudo traer la respuesta");
             }
 
             let allData = await response.json();
 
-            allData.forEach(carousel => {
+            allData.forEach(category => {
 
+                categories.push(category);
 
+               carouselsdiv.innerHTML += 
+               `
+               <div class="carousel">
+                   <div class="sellersTitle">
+                       <h2>Los 5 Más vendidos en ${category}</h2>
+                   </div>
+                   <div class="cards" id="${category}">
+                   </div>
+               </div>`;
 
-                
-                carouselsdiv.innerHTML += 
-                    `
-                    <div class="carousel">
-                        <div class="sellersTitle">
-                            <h2>Los 5 Más vendidos en ${carousel}</h2>
+            });
+        }
+        catch(e) {
+            console.log("error de red");
+        }
+
+        showCardsByCategory(categories);
+
+}
+
+async function showCardsByCategory(categories) {
+  
+    for(let i = 0; i < categories.length; i++) {
+        console.log(categories[i]);
+
+        let cardsDiv = document.querySelector("#"+categories[i]);
+
+        try {
+            let response = await fetch(api+`filterByCategoryLimit?category=${categories[i]}&limit=5`);
+    
+            let products = await response.json();
+    
+            products.forEach(product => {
+         
+                cardsDiv.innerHTML += `
+    
+                    <div class="card">
+                        <div class="imgCard">
+                            <img src="files/card-images/shoe.jpg">
                         </div>
-                        <div class="cards">
-                            <div class="card">
-                                <div class="imgCard">
-                                    <img src="files/card-images/shoe.jpg">
-                                </div>
-                                <div class="titleCard">
-                                    <p>Zapatilla</p>
-                                </div>
-                                <div class="priceCard">
-                                    <p>$3000</p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="imgCard">
-                                    <img src="files/card-images/shoe.jpg">
-                                </div>
-                                <div class="titleCard">
-                                    <p>Zapatilla</p>
-                                </div>
-                                <div class="priceCard">
-                                    <p>$3000</p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="imgCard">
-                                    <img src="files/card-images/shoe.jpg">
-                                </div>
-                                <div class="titleCard">
-                                    <p>Zapatilla</p>
-                                </div>
-                                <div class="priceCard">
-                                    <p>$3000</p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="imgCard">
-                                    <img src="files/card-images/shoe.jpg">
-                                </div>
-                                <div class="titleCard">
-                                    <p>Zapatilla</p>
-                                </div>
-                                <div class="priceCard">
-                                    <p>$3000</p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="imgCard">
-                                    <img src="files/card-images/shoe.jpg">
-                                </div>
-                                <div class="titleCard">
-                                    <p>Zapatilla</p>
-                                </div>
-                                <div class="priceCard">
-                                    <p>$3000</p>
-                                </div>
-                            </div>
+                        <div class="titleCard">
+                            <p>${product.productName}</p>
                         </div>
-                    </div>`;
-                }
-
-
-            );
+                        <div class="priceCard">
+                            <p>$${product.price}}</p>
+                        </div>
+                    </div>
+    
+            
+                `
+            });
 
         }
         catch(e) {
-            alert("error de red");
+            console.log(e+"error");
         }
 
 
-
-
+    }
 
 }
