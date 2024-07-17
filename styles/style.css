@@ -372,6 +372,60 @@ main {
 }
 
 
+/* results page */
+
+.results {
+  display: flex;
+  width: 100%;
+  height: auto;
+}
+
+.moreInfoResultsAside {
+  height: 50em;
+  width: 25%;
+  background-color: #d89d9d;
+}
+
+
+.resultsFound {
+  height: 50em;
+  width: 75%;
+  background-color: var(--mainColor);
+  display: flex;
+  justify-content: flex-start;
+}
+
+.resultsCards {
+  width: 90%;
+  background-color: aquamarine;
+  height: 50em;
+}
+
+.resultCard {
+  display: flex;
+  height: 10em;
+  background-color: blueviolet;
+  border-bottom: 0.1em solid #000;
+}
+
+.resultCardInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.resultCardInfo h2 {
+  font-size: larger;
+}
+
+.resultCardInfo p {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+
+
+
 /* footer section */
 
 footer {
