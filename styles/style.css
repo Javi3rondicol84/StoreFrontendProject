@@ -5,7 +5,7 @@
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
-    color: #fff;
+    color: #000;
 }
 
 .roboto-thin {
@@ -174,6 +174,7 @@ nav {
   justify-content: space-evenly;
   width: 100%;
   align-items: center;
+  height: 3em;
 }
 
 nav ul {
@@ -235,6 +236,23 @@ a {
 .search img {
   width: 3em;
 }
+
+/* cart button */
+
+.cart {
+  height: 2em;
+  width: 3em;
+  background-color: #000;
+  margin-right: 0.5em;
+  cursor: pointer;
+  border: 0;
+}
+
+.cart img {
+  height: 2em;
+  width: 2em;
+}
+
 
 /* main section */
 main {
