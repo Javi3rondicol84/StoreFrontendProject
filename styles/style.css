@@ -261,6 +261,27 @@ a {
 }
 
 
+.categoriesMenuDropdown {
+  background-color: #d89d9d;
+  height: 15em;
+  width: 15em;
+  position: absolute;
+  left: 22em;
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}
+
+.ulCategories {
+  list-style: none;
+}
+
+.ulCategories li {
+  padding-left: 2em;
+}
+
 
 /* cart button */
 

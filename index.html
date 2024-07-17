@@ -12,6 +12,12 @@
 </head>
 <body>
     <header>
+        <section class="search">
+            <form>
+                <input type="text" placeholder="Buscar productos" id="searchValue">
+                <button type="submit" title="search" id="searchButton"><img src="files/search-button.png"></button>
+            </form>
+        </section>
         <nav>
             <div class="navLogo">
                 <a src="index.html"><img src="files/mainIco.png"></a>
@@ -23,17 +29,16 @@
                 <li><a href="pages/login.html">Crear Cuenta</a></li>
             </ul>
             <button class="cart"><img src="files/shopping-cart.png"></button>
-         <!--  <button class="cart"><img src="files/shopping-cart.png"></button>--> 
         </nav>
-        <section class="search">
-            <form>
-                <input type="text" placeholder="Buscar productos" id="searchValue">
-                <button type="submit" title="search" id="searchButton"><img src="files/search-button.png"></button>
-            </form>
-        </section>
+        
     </header>
 
     <main>
+        <section class="categoriesMenuDropdown hidden">
+            <ul class="categoriesLi">
+
+            </ul>
+        </section>
         <section class="mainBanner">
             <div>
                 <img src="files/main-banner/coca-cola.jpg">
