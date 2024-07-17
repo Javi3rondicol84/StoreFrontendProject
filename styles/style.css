@@ -8,6 +8,10 @@
     color: #000;
 }
 
+a {
+  cursor: pointer;
+}
+
 .roboto-thin {
     font-family: "Roboto", sans-serif;
     font-weight: 100;
@@ -236,6 +240,27 @@ a {
 .search img {
   width: 3em;
 }
+
+/* dropdown menu */
+
+.dropdownMenu {
+  width: 0.6em;
+  height: 0.6em;
+  border: 0;
+  margin-top: 0.3em;
+  margin-left: 0.3em;
+}
+
+.dropdownLi {
+  cursor: pointer;
+  color: #fff;
+}
+
+.dropdownLi:hover {
+  color: blue;
+}
+
+
 
 /* cart button */
 
