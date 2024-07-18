@@ -5,7 +5,10 @@ const api = "http://localhost:8080/products/"
 //all carousels
 let carouselsdiv = document.querySelector("#carousels");
 
-setAllCarousels();
+if(carouselsdiv) {
+    setAllCarousels();
+}
+
 
 async function setAllCarousels() {
     let categories = [];
@@ -84,5 +87,58 @@ async function showCardsByCategory(categories) {
 
 
     }
+
+}
+
+
+let dropdownMenuLi = document.querySelector(".dropdownLi");
+
+let dropdownMenu = document.querySelector(".categoriesMenuDropdown");
+
+dropdownMenuLi.addEventListener("mouseenter", function() {
+
+    dropdownMenu.classList.toggle("hidden");
+
+    let ulCategories = document.querySelector(".categoriesLi");
+
+    if(ulCategories.querySelectorAll('li').length === 0) {
+        addCategoriesLi(ulCategories);
+    }
+});
+
+dropdownMenu.addEventListener("mouseleave", function() {
+
+    dropdownMenu.classList.toggle("hidden");
+});
+
+async function addCategoriesLi(ulCategories) {
+    
+    try {
+        let response = await fetch(api+"categories/");
+
+        if(!response.ok) {
+            console.log("error bad request");
+        }
+        
+        let categories = await response.json();
+
+        categories.forEach(category => {
+ 
+            ulCategories.innerHTML += 
+            `
+                <a href=""><li>${category}</li></a>
+            
+            `
+
+
+        });
+    }
+    catch(e) {
+        console.log(e);
+    }
+
+
+    
+
 
 }
