@@ -123,12 +123,24 @@ async function addCategoriesLi(ulCategories) {
         let categories = await response.json();
 
         categories.forEach(category => {
- 
-            ulCategories.innerHTML += 
-            `
-                <a href=""><li>${category}</li></a>
             
-            `
+            if (window.location.pathname.includes('result.html')) {
+                
+                ulCategories.innerHTML += 
+                `
+                    <a href="result.html?category=${category}"><li>${category}</li></a>
+                
+                `
+            } else {
+               
+                ulCategories.innerHTML += 
+                `
+                    <a href="pages/result.html?category=${category}"><li>${category}</li></a>
+                
+                `
+
+            }
+    
 
 
         });

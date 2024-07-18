@@ -369,6 +369,7 @@ main {
   flex-direction: column;
   /*border: 0.2em solid #000;*/
   border-radius: 0.125em;
+
 }
 
 .carousel h2 {
@@ -381,10 +382,11 @@ main {
 
 .cards {
   display: flex;
+  
 }
 .card {
   border: 0.1em solid #000;
-  width: 25%;
+  width: 20%;
   margin-left: 0.1em;
   margin-right: 0.1em; 
   height: 20em;
