@@ -5,7 +5,11 @@
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
-    color: #fff;
+    color: #000;
+}
+
+a {
+  cursor: pointer;
 }
 
 .roboto-thin {
@@ -166,7 +170,7 @@
 header {
   display: flex;
   background-color: var(--secondaryColor);
-  height: 3em;
+  flex-direction: column;
 }
 
 nav {
@@ -174,6 +178,7 @@ nav {
   justify-content: space-evenly;
   width: 100%;
   align-items: center;
+  height: 3em;
 }
 
 nav ul {
@@ -203,6 +208,99 @@ a {
   height: 100%;
   width: 100%;
 }
+
+/* search button */
+
+.search {
+  height: 4em;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.search form {
+  width: 20em;
+  display: flex;
+}
+
+.search input {
+  height: 90%;
+  width: 80%;
+  color: #000;
+}
+
+.search button {
+  border: 0;
+  height: 90%;
+  width: 20%;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.search img {
+  width: 3em;
+}
+
+/* dropdown menu */
+
+.dropdownMenu {
+  width: 0.6em;
+  height: 0.6em;
+  border: 0;
+  margin-top: 0.3em;
+  margin-left: 0.3em;
+}
+
+.dropdownLi {
+  cursor: pointer;
+  color: #fff;
+}
+
+.dropdownLi:hover {
+  color: blue;
+}
+
+
+.categoriesMenuDropdown {
+  background-color: var(--secondaryColor);
+  width: 13em;
+  position: absolute;
+  left: 30%;
+  display: flex;
+  
+}
+
+.hidden {
+  display: none;
+}
+
+.categoriesLi {
+  list-style: none;
+}
+
+.categoriesLi li {
+  color: #fff;
+  padding: 0.5em 0 0.5em 0.5em;
+  border-radius: 1.5em;
+}
+
+
+/* cart button */
+
+.cart {
+  height: 2em;
+  width: 3em;
+  background-color: #000;
+  margin-right: 0.5em;
+  cursor: pointer;
+  border: 0;
+}
+
+.cart img {
+  height: 2em;
+  width: 2em;
+}
+
 
 /* main section */
 main {
@@ -235,6 +333,11 @@ main {
   flex-direction: column;
   width: 100%;
   align-items: center;
+  margin-top: 1em;
+}
+
+.presentation h1, .presentation p {
+  color: #000;
 }
 
 .description {
@@ -266,6 +369,7 @@ main {
   flex-direction: column;
   /*border: 0.2em solid #000;*/
   border-radius: 0.125em;
+
 }
 
 .carousel h2 {
@@ -278,10 +382,11 @@ main {
 
 .cards {
   display: flex;
+  
 }
 .card {
   border: 0.1em solid #000;
-  width: 25%;
+  width: 20%;
   margin-left: 0.1em;
   margin-right: 0.1em; 
   height: 20em;
@@ -289,6 +394,10 @@ main {
   display: flex;
   flex-direction: column;
   border-radius: 0.125em;
+}
+
+.carousel:last-child {
+  margin-bottom: 2em;
 }
 
 .card p {
@@ -317,6 +426,59 @@ main {
 }
 
 
+/* results page */
+
+.results {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 100em;
+}
+
+.moreInfoResultsAside {
+  width: 25%;
+  background-color: #d89d9d;
+}
+
+
+.resultsFound {
+  width: 75%;
+  background-color: var(--mainColor);
+  display: flex;
+  justify-content: flex-start;
+}
+
+.resultsCards {
+  width: 90%;
+  background-color: aquamarine;
+  height: 100%;
+}
+
+.resultCard {
+  display: flex;
+  height: 10em;
+  background-color: blueviolet;
+  border-bottom: 0.1em solid #000;
+}
+
+.resultCardInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.resultCardInfo h2 {
+  font-size: larger;
+}
+
+.resultCardInfo p {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+
+
+
 /* footer section */
 
 footer {
@@ -326,7 +488,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 2em;
+
 }
 
 footer p {
