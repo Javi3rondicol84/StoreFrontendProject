@@ -123,10 +123,14 @@ async function addCategoriesLi(ulCategories) {
         let categories = await response.json();
 
         categories.forEach(category => {
-            let li = document.createElement("li");
-            li.textContent = category;
-            ulCategories.appendChild(li);
+ 
+            ulCategories.innerHTML += 
+            `
+                <a href=""><li>${category}</li></a>
             
+            `
+
+
         });
     }
     catch(e) {

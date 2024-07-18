@@ -262,24 +262,26 @@ a {
 
 
 .categoriesMenuDropdown {
-  background-color: #d89d9d;
-  height: 15em;
-  width: 15em;
+  background-color: var(--secondaryColor);
+  width: 13em;
   position: absolute;
-  left: 22em;
+  left: 30%;
   display: flex;
+  
 }
 
 .hidden {
   display: none;
 }
 
-.ulCategories {
+.categoriesLi {
   list-style: none;
 }
 
-.ulCategories li {
-  padding-left: 2em;
+.categoriesLi li {
+  color: #fff;
+  padding: 0.5em 0 0.5em 0.5em;
+  border-radius: 1.5em;
 }
 
 

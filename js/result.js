@@ -1,6 +1,6 @@
 "use strict";
 
-const api = "http://localhost:8080/products/search?keyword="
+const apiSearchRoute = "http://localhost:8080/products/search?keyword="
 
 window.onload = function() {
     const params = new URLSearchParams(window.location.search);
@@ -13,7 +13,7 @@ window.onload = function() {
 
         try {
             
-            let response = await fetch(api+search);
+            let response = await fetch(apiSearchRoute+search);
             
             if(!response.ok) {
                 console.log("fallido, sin productos");
