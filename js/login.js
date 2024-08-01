@@ -1,5 +1,5 @@
 "use strict";
-const url = "http://localhost:8080/users/exists";
+const url = "http://localhost:8080/auth/login";
 
 let formLogin = document.querySelector("#formLogin");
 let loginmessage = document.querySelector("#login-message");
@@ -17,7 +17,7 @@ async function logging(e) {
     let pass = formData.get('pass');
 
     let data = {
-        "userName": username,
+        "username": username,
         "password": pass
     }
     
@@ -30,15 +30,18 @@ async function logging(e) {
             body: JSON.stringify(data),
         });
 
+        const token = await response.json();
+
         if(!response.ok) {
             loginmessage.innerHTML = "El username o la contraseña son incorrectos";
         }
         else {
-            loginmessage.innerHTML = "El usuario se ingreso correctamente";
+            loginmessage.innerHTML = "El usuario se ingreso correctamente, el token es: "+token.token;
+            console.log(token.token);
 
-            setTimeout(() => {
-                window.location.href = "../index.html"
-            }, 1250);
+         //   setTimeout(() => {
+           //     window.location.href = "../index.html"
+            //}, 1250);
             
         }
 
