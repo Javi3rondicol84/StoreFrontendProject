@@ -8,6 +8,10 @@
     color: #000;
 }
 
+.hidden {
+  display: none;
+}
+
 a {
   cursor: pointer;
 }

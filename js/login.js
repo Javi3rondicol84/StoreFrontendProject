@@ -30,18 +30,30 @@ async function logging(e) {
             body: JSON.stringify(data),
         });
 
-        const token = await response.json();
+        const responseData = await response.json();
+        const token = responseData.token;
+
+        localStorage.setItem('token', token);
 
         if(!response.ok) {
             loginmessage.innerHTML = "El username o la contraseña son incorrectos";
         }
         else {
-            loginmessage.innerHTML = "El usuario se ingreso correctamente, el token es: "+token.token;
-            console.log(token.token);
+            loginmessage.innerHTML = "El usuario se ingreso correctamente, el token es: "+token;
+            console.log(token);
+            const decodedToken = jwt_decode(token);
+            console.log('Decoded Token:', decodedToken);
+            console.log('Authorities Token:', decodedToken.authorities);
 
-         //   setTimeout(() => {
-           //     window.location.href = "../index.html"
-            //}, 1250);
+            if(decodedToken.authorities.includes('USER')) {
+                console.log("contiene el rol usuario");
+            }
+            else if(decodedToken.authorities.includes('ADMIN')) {
+                console.log("contiene el rol admin");
+            }
+           setTimeout(() => {
+                window.location.href = "../index.html"
+            }, 1250);
             
         }
 

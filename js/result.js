@@ -4,6 +4,7 @@ const apiSearchRoute = "http://localhost:8080/products/search?keyword=";
 const apiCategoryRoute = "http://localhost:8080/products/category?category=";
 
 window.onload = function() {
+    main();
 
     if(window.location.search.includes("search")) {
         const params = new URLSearchParams(window.location.search);

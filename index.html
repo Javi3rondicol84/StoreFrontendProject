@@ -25,8 +25,8 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li class="dropdownLi">Categorias<img class="dropdownMenu" src="files/dropdownMenu.png"></li>
-                <li><a href="pages/login.html">Ingresar</a></li>
-                <li><a href="pages/login.html">Crear Cuenta</a></li>
+                <li><a href="pages/login.html" id="logged"></a></li>
+                <li class="createAccount"><a href="pages/login.html">Crear Cuenta</a></li>
             </ul>
             <button class="cart"><img src="files/shopping-cart.png"></button>
         </nav>
@@ -64,5 +64,7 @@
 
     <script src="js/main.js"></script>
     <script src="js/search.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+    <script src="js/auth.js"></script>
 </body>
 </html>
