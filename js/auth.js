@@ -9,7 +9,7 @@ async function main() {
 
     if(token) {
         const decodedToken = jwt_decode(token);
-        const currentTime = Math.floor(Date.now() / 1000); // current time in seconds
+        const currentTime = Math.floor(Date.now() / 1000); 
         console.log(token);
         if (decodedToken.exp > currentTime) {
             // Token is valid
@@ -29,6 +29,17 @@ async function main() {
         cart.classList.add("hidden");
         isLogged.innerHTML = "Iniciar Sesion";
     }
+
+    //delete token - close session
+    if(isLogged.innerHTML != "Iniciar Sesion") {
+        isLogged.addEventListener("click", function() {
+
+            localStorage.removeItem('token');
+            isLogged.href = "";
+        });
+    }
+    
+
 }
 
 main();

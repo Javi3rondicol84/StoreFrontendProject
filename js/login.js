@@ -39,21 +39,11 @@ async function logging(e) {
             loginmessage.innerHTML = "El username o la contraseña son incorrectos";
         }
         else {
-            loginmessage.innerHTML = "El usuario se ingreso correctamente, el token es: "+token;
-            console.log(token);
-            const decodedToken = jwt_decode(token);
-            console.log('Decoded Token:', decodedToken);
-            console.log('Authorities Token:', decodedToken.authorities);
+            loginmessage.innerHTML = "El usuario se ingreso correctamente.";
 
-            if(decodedToken.authorities.includes('USER')) {
-                console.log("contiene el rol usuario");
-            }
-            else if(decodedToken.authorities.includes('ADMIN')) {
-                console.log("contiene el rol admin");
-            }
            setTimeout(() => {
                 window.location.href = "../index.html"
-            }, 1250);
+            }, 800);
             
         }
 
