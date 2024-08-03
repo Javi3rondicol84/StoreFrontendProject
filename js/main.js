@@ -35,6 +35,8 @@ async function setAllCarousels() {
                        <h2>Los 5 Más vendidos en ${category}</h2>
                    </div>
                    <div class="cards" id="${category}">
+                    <button class="left-button"><img src="files/play.png"></button>
+                    <button class="right-button"><img src="files/play.png"></button>
                    </div>
                </div>`;
 
@@ -56,7 +58,7 @@ async function showCardsByCategory(categories) {
         let cardsDiv = document.querySelector("#"+categories[i]);
 
         try {
-            let response = await fetch(api+`filterByCategoryLimit?category=${categories[i]}&limit=5`);
+            let response = await fetch(api+`filterByCategoryLimit?category=${categories[i]}&limit=10`);
     
             let products = await response.json();
     

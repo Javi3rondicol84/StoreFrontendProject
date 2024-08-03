@@ -321,7 +321,7 @@ main {
   width: 100%;
 }
 .mainBanner div {
-  height: 25em;
+  height: 20em;
   width: 100%;
 }
 
@@ -359,6 +359,7 @@ main {
   display: flex;
   margin-top: 0em;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 .sellersTitle {
@@ -367,13 +368,15 @@ main {
 }
 
 .carousel {
-  background-color: #175500;
+  width: 160%;
+  background-color: var(--secondaryColor);
   display: flex;
   margin-top: 2em;
   flex-direction: column;
   /*border: 0.2em solid #000;*/
   border-radius: 0.125em;
-
+  position: relative;
+  overflow: hidden;
 }
 
 .carousel h2 {
@@ -428,6 +431,36 @@ main {
   font-size: 1.5em;
   padding: 0.125em;
 }
+
+.left-button {
+  position: absolute;
+  background-color: gray;
+  width: auto;
+  height: 3.5em;
+  top: 50%;
+  transform: translateX(-70%) translateY(-50%);
+}
+
+.right-button {
+  position: absolute;
+  background-color: gray;
+  width: auto;
+  height: 3.5em;
+  top: 50%;
+  right: 0;
+  transform: translateX(70%) translateY(-50%);
+}
+
+.left-button img, .right-button img {
+  width: 3.5em;
+  height: 100%;
+}
+
+.left-button img {
+  transform: rotateY(180deg);
+}
+
+
 
 
 /* results page */
