@@ -530,6 +530,34 @@ main {
   margin-top: 10px;
 }
 
+/* Add to cart button */
+.addCartButton {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.addCartButton button {
+  background-color: #28a745; 
+  border: none;
+  color: white; 
+  padding: 10px 20px; 
+  text-align: center; 
+  text-decoration: none;
+  display: inline-block; 
+  font-size: 16px; 
+  border-radius: 5px; 
+  transition: background-color 0.3s ease; 
+  cursor: pointer; 
+}
+
+.addCartButton button:hover {
+  background-color: #218838; 
+}
+
+.addCartButton button:active {
+  background-color: #1e7e34; 
+}
+
 
 /* results page */
 

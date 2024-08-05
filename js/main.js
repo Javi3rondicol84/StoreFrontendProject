@@ -76,6 +76,9 @@ async function showCardsByCategory(categories) {
                         <div class="priceCard">
                             <p>$${product.price}</p>
                         </div>
+                        <div class="addCartButton">
+                            <button>Agregar al carrito</button>
+                        </div>
                     </div>
     
             
