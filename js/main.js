@@ -68,7 +68,7 @@ async function showCardsByCategory(categories) {
     
                     <div class="card">
                         <div class="imgCard">
-                            <img src="files/card-images/shoe.jpg">
+                            <img src="files/card-images/add-product.png">
                         </div>
                         <div class="titleCard">
                             <p>${product.productName}</p>
