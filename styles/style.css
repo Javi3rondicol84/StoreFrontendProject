@@ -352,6 +352,7 @@ main {
 
 /* best-seller section */
 
+/*
 .bestSellers {
   text-align: left;
   height: auto;
@@ -373,7 +374,7 @@ main {
   display: flex;
   margin-top: 2em;
   flex-direction: column;
-  /*border: 0.2em solid #000;*/
+  /*border: 0.2em solid #000;
   border-radius: 0.125em;
   position: relative;
   overflow: hidden;
@@ -460,7 +461,74 @@ main {
   transform: rotateY(180deg);
 }
 
+*/
 
+.bestSellers {
+  margin: 20px;
+}
+
+.carousel {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.sellersTitle h2 {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+/* Estilos de los botones */
+.left-button, .right-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  z-index: 10;
+}
+
+.left-button {
+  left: 10px;
+  transform: rotate(180deg);
+}
+
+.right-button {
+  right: 10px;
+}
+
+.left-button img, .right-button img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Estilos de las tarjetas */
+.cards {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+.card {
+  flex: 0 0 20%; /* 5 cartas visibles */
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;
+}
+
+.card img {
+  width: 100px;
+  height: 100px;
+}
+
+.titleCard, .priceCard {
+  margin-top: 10px;
+}
 
 
 /* results page */

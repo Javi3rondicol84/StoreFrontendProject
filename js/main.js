@@ -35,8 +35,8 @@ async function setAllCarousels() {
                        <h2>Los 5 Más vendidos en ${category}</h2>
                    </div>
                    <div class="cards" id="${category}">
-                    <button class="left-button"><img src="files/play.png"></button>
-                    <button class="right-button"><img src="files/play.png"></button>
+                    <button class="left-button card-button"><img src="files/play.png"></button>
+                    <button class="right-button card-button"><img src="files/play.png"></button>
                    </div>
                </div>`;
 
@@ -89,6 +89,18 @@ async function showCardsByCategory(categories) {
 
 
     }
+
+    let buttonsCard = document.querySelectorAll(".card-button");
+
+    buttonsCard.forEach(buttonCard => {
+        
+        buttonCard.addEventListener("click", function() {
+            
+            console.log(buttonCard.parentElement);
+
+        });
+
+    });
 
 }
 
