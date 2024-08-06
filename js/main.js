@@ -41,7 +41,7 @@ async function setAllCarousels() {
 
 async function showCardsByCategory(categories) {
     for (let i = 0; i < categories.length; i++) {
-        let page = 1;
+        let page = 0;
         let cardsDiv = document.querySelector(`#${categories[i]}`);
         await loadCards(categories[i], page);
 
@@ -50,7 +50,7 @@ async function showCardsByCategory(categories) {
 
         leftButton.addEventListener("click", async (event) => {
             const category = event.currentTarget.getAttribute('data-category');
-            if (page > 1) {
+            if (page > 0) {
                 page--;
                 await loadCards(category, page, 'left');
             }
@@ -100,23 +100,41 @@ async function loadCards(category, page, direction) {
         
         setTimeout(() => {
             cardsContent.innerHTML = "";
-            products.forEach(product => {
-                cardsContent.innerHTML += `
-                    <div class="card">
-                        <div class="imgCard">
-                            <img src="files/card-images/add-product.png">
-                        </div>
-                        <div class="titleCard">
-                            <p>${product.productName}</p>
-                        </div>
-                        <div class="priceCard">
-                            <p>$${product.price}</p>
-                        </div>
-                        <div class="addCartButton">
-                            <button>Agregar al carrito</button>
-                        </div>
-                    </div>`;
-            });
+            if(token) {
+                products.forEach(product => {
+                    cardsContent.innerHTML += `
+                        <div class="card">
+                            <div class="imgCard">
+                                <img src="files/card-images/add-product.png">
+                            </div>
+                            <div class="titleCard">
+                                <p>${product.productName}</p>
+                            </div>
+                            <div class="priceCard">
+                                <p>$${product.price}</p>
+                            </div>
+                            <div class="addCartButton">
+                                <button>Agregar al carrito</button>
+                            </div>
+                        </div>`;
+                });
+            }
+            else {
+                products.forEach(product => {
+                    cardsContent.innerHTML += `
+                        <div class="card">
+                            <div class="imgCard">
+                                <img src="files/card-images/add-product.png">
+                            </div>
+                            <div class="titleCard">
+                                <p>${product.productName}</p>
+                            </div>
+                            <div class="priceCard">
+                                <p>$${product.price}</p>
+                            </div>
+                        </div>`;
+                });
+            }
             cardsContent.style.transition = 'none';
             cardsContent.style.transform = 'translateX(0)';
             setTimeout(() => {
