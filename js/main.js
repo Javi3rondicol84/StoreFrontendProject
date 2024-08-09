@@ -9,7 +9,6 @@ if(carouselsdiv) {
     setAllCarousels();
 }
 
-
 async function setAllCarousels() {
     let categories = [];
     carouselsdiv.innerHTML = "";
@@ -32,15 +31,19 @@ async function setAllCarousels() {
                    </div>
                </div>`;
         });
+
     } catch (e) {
         console.log("Error de red");
     }
+
     showCardsByCategory(categories);
+
 }
 
 
 async function showCardsByCategory(categories) {
-    for (let i = 0; i < categories.length; i++) {
+    let i = 0;
+    for (i = 0; i < categories.length; i++) {
         let page = 0;
         let cardsDiv = document.querySelector(`#${categories[i]}`);
         await loadCards(categories[i], page);
@@ -65,7 +68,9 @@ async function showCardsByCategory(categories) {
                 page--;
             }
         });
+
     }
+
 }
 
 async function loadCards(category, page, direction) {
@@ -103,7 +108,7 @@ async function loadCards(category, page, direction) {
             if(token) {
                 products.forEach(product => {
                     cardsContent.innerHTML += `
-                        <div class="card">
+                        <div class="card" id="${product.productId}">
                             <div class="imgCard">
                                 <img src="files/card-images/add-product.png">
                             </div>
@@ -114,7 +119,7 @@ async function loadCards(category, page, direction) {
                                 <p>$${product.price}</p>
                             </div>
                             <div class="addCartButton">
-                                <button>Agregar al carrito</button>
+                                <button class="cartButton">Agregar al carrito</button>
                             </div>
                         </div>`;
                 });
@@ -122,7 +127,7 @@ async function loadCards(category, page, direction) {
             else {
                 products.forEach(product => {
                     cardsContent.innerHTML += `
-                        <div class="card">
+                        <div class="card" id="${product.productId}">
                             <div class="imgCard">
                                 <img src="files/card-images/add-product.png">
                             </div>
@@ -140,7 +145,28 @@ async function loadCards(category, page, direction) {
             setTimeout(() => {
                 cardsContent.style.transition = 'transform 0.5s ease';
             });
+            
+            let cartButtons = cardsContent.querySelectorAll(".cartButton");
+
+            cartButtons.forEach(cartButton => {
+                cartButton.addEventListener("click", () => {
+                    let idProduct = cartButton.parentElement.parentElement.getAttribute('id');
+                    
+                    const decodedToken = jwt_decode(token);
+
+                    let username = decodedToken.sub;
+
+                    addToCart(idProduct, username);
+
+                    console.log(idProduct + username);
+                    
+
+
+                });
+            });
         }, 100);
+
+        
 
         return true;
 
@@ -150,6 +176,69 @@ async function loadCards(category, page, direction) {
     }
 
 }
+
+async function addToCart(productIdData, username) {
+    let urlCart = "http://localhost:8080/cart/add";
+
+    let userIdData = await getUserId(username);
+
+    let data = {
+        product: {
+            productId: productIdData
+        },
+        user: {
+            userId: userIdData 
+        },
+        amount: 1
+    };
+
+    try {
+
+        let response = await fetch(urlCart, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(data)
+        });
+
+        if(!response.ok) {
+            console.log("error al intentar añadir el carrito");
+            return;
+        }
+
+        console.log("añadido al carrito exitosamente");
+
+
+    }
+    catch(e) {
+        console.log("error: "+e);
+    }
+
+
+}
+
+async function getUserId(username) {
+    let urlUsername = "http://localhost:8080/auth/getUserId/"+username;
+
+    let response = await fetch(urlUsername, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}` 
+        }
+    });
+
+    if(!response.ok) {
+        console.log("error al obtener userId");
+        return;
+    }
+
+    let userId = await response.json();
+
+    return userId;
+}
+
 
 
 
@@ -202,19 +291,11 @@ async function addCategoriesLi(ulCategories) {
                     <a href="pages/result.html?category=${category}"><li>${category}</li></a>
                 
                 `
-
             }
-    
-
 
         });
     }
     catch(e) {
         console.log(e);
     }
-
-
-    
-
-
 }
