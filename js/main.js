@@ -158,10 +158,6 @@ async function loadCards(category, page, direction) {
 
                     addToCart(idProduct, username);
 
-                    console.log(idProduct + username);
-                    
-
-
                 });
             });
         }, 100);

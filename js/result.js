@@ -53,7 +53,7 @@ window.onload = function() {
     }
     else if(window.location.search.includes("category")) {
         const params = new URLSearchParams(window.location.search);
-        const categoryChoosed = params.get('category'); //usar search para buscar un producto con like de esto
+        const categoryChoosed = params.get('category'); 
     
         let resultsCardsDiv = document.querySelector(".resultsCards");
     

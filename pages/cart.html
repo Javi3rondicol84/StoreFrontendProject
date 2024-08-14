@@ -28,26 +28,24 @@
                 <li><a href="../pages/login.html" id="logged"></a></li>
                 <li class="createAccount"><a href="../pages/login.html">Crear Cuenta</a></li>
             </ul>
-            <button class="cart"><a href="pages/cart.html"><img src="../files/shopping-cart.png"></a></button>
+            <button class="cart"><a href="../pages/cart.html"><img src="../files/shopping-cart.png"></a></button>
         </nav>
     </header>
 
     <main>
-        <section class="categoriesMenuDropdown hidden">
-            <ul class="categoriesLi">
+        <section class="cartSection">
+            <div class="cartItems">
 
-            </ul>
-        </section>
-        <section class="results">
-            <aside class="moreInfoResultsAside">
-
-            </aside>
-            <div class="resultsFound">
-                <div class="resultsCards">
-                   
-                </div>
+            </div>
+            <div class="purchaseSummary">
+                <h2>Resumen de la compra</h2>
+                <h4 id="amountProducts">Producto/productos(1)</h4>
+                <p id="totalPurchase">Total $139237</p>
+                <button>Comprar</button>
             </div>
         </section>
+     
+     
 
 
     </main>
@@ -55,10 +53,8 @@
          <p>Gracias por elegirnos. En [Nombre de la Tienda], nos esforzamos por brindarte la mejor experiencia de compra. ¿Preguntas? ¿Comentarios? Contáctanos en [Dirección de Correo Electrónico] o síguenos en nuestras redes sociales [Enlaces a Redes Sociales]. ¡Feliz compras!</p>
     </footer>
 
-    <script src="../js/main.js"></script>
-    <script src="../js/search.js"></script>
-    <script src="../js/result.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
     <script src="../js/auth.js"></script>
+    <script src="../js/cart.js"></script>
 </body>
 </html>
