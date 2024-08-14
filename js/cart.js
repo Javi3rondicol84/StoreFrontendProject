@@ -167,6 +167,8 @@ function showPurchaseSummary(allProductsInCart) {
     let totalPriceProducts = getTotalPrice(allProductsInCart);
     let totalAmountProducts = getTotalAmount(allProductsInCart);
 
+    totalPriceProducts = Math.trunc(totalPriceProducts);
+
     amountProducts.innerHTML = `Cantidad de Productos: ${totalAmountProducts}`;
     
     totalPurchase.innerHTML = `$${totalPriceProducts}`;

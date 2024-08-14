@@ -30,7 +30,7 @@ window.onload = function() {
                     resultsCardsDiv.innerHTML += 
                     `
                         <div class="resultCard">
-                            <img src="../files/card-images/shoe.jpg">
+                            <img src="../files/card-images/add-product.png">
                             <div class="resultCardInfo">
                                 <h2>${product.productName}</h2>
                                 <p>${product.price}</p>
@@ -75,7 +75,7 @@ window.onload = function() {
                     resultsCardsDiv.innerHTML += 
                     `
                         <div class="resultCard">
-                            <img src="../files/card-images/shoe.jpg">
+                            <img src="../files/card-images/add-product.png">
                             <div class="resultCardInfo">
                                 <h2>${product.productName}</h2>
                                 <p>${product.price}</p>

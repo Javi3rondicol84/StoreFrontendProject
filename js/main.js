@@ -119,7 +119,7 @@ async function loadCards(category, page, direction) {
                                 <p>$${product.price}</p>
                             </div>
                             <div class="addCartButton">
-                                <button class="cartButton">Agregar al carrito</button>
+                                <button class="cartButton cartButtonColor">Agregar al carrito</button>
                             </div>
                         </div>`;
                 });
@@ -147,17 +147,21 @@ async function loadCards(category, page, direction) {
             });
             
             let cartButtons = cardsContent.querySelectorAll(".cartButton");
+     
 
             cartButtons.forEach(cartButton => {
+                let productsAmount = 0;
                 cartButton.addEventListener("click", () => {
                     let idProduct = cartButton.parentElement.parentElement.getAttribute('id');
-                    
+                    productsAmount += 1;
                     const decodedToken = jwt_decode(token);
 
                     let username = decodedToken.sub;
 
+                    cartButton.classList.remove("cartButtonColor");
+                    cartButton.classList.add("cartButtonColorAdded");
                     addToCart(idProduct, username);
-
+                    cartButton.innerHTML = `Agregado(${productsAmount})`;
                 });
             });
         }, 100);
@@ -280,7 +284,16 @@ async function addCategoriesLi(ulCategories) {
                     <a href="result.html?category=${category}"><li>${category}</li></a>
                 
                 `
-            } else {
+            } 
+            else if (window.location.pathname.includes('cart.html')) {
+
+                ulCategories.innerHTML += 
+                `
+                    <a href="result.html?category=${category}"><li>${category}</li></a>
+                
+                `
+            }
+            else {
                
                 ulCategories.innerHTML += 
                 `
