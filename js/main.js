@@ -18,7 +18,8 @@ async function setAllCarousels() {
             console.log("No se pudo traer la respuesta");
         }
         let allData = await response.json();
-        allData.forEach(category => {
+
+        for(let category of allData) {
             categories.push(category);
             carouselsdiv.innerHTML += `
                <div class="carousel">
@@ -30,44 +31,49 @@ async function setAllCarousels() {
                     <button class="right-button" data-category="${category}"><img src="files/play.png"></button>
                    </div>
                </div>`;
-        });
+        }
+
+        await showCardsByCategory(categories);
 
     } catch (e) {
         console.log("Error de red");
     }
 
-    showCardsByCategory(categories);
+
 
 }
 
 
 async function showCardsByCategory(categories) {
+
     let i = 0;
     for (i = 0; i < categories.length; i++) {
+
         let page = 0;
         let cardsDiv = document.querySelector(`#${categories[i]}`);
+
         await loadCards(categories[i], page);
 
-        let leftButton = cardsDiv.querySelector(".left-button");
-        let rightButton = cardsDiv.querySelector(".right-button");
+                let leftButton = cardsDiv.querySelector(".left-button");
+                let rightButton = cardsDiv.querySelector(".right-button");
 
-        leftButton.addEventListener("click", async (event) => {
-            const category = event.currentTarget.getAttribute('data-category');
-            if (page > 0) {
-                page--;
-                await loadCards(category, page, 'left');
-            }
-        });
+                leftButton.addEventListener("click", async (event) => {
+                    const category = event.currentTarget.getAttribute('data-category');
+                    if (page > 0) {
+                        page--;
+                        await loadCards(category, page, 'left');
+                    }
+                });
 
-        rightButton.addEventListener("click", async (event) => {
-            const category = event.currentTarget.getAttribute('data-category');
-            page++;
-            const hasMore = await loadCards(category, page, 'right');
-        
-            if(!hasMore) {
-                page--;
-            }
-        });
+                rightButton.addEventListener("click", async (event) => {
+                    const category = event.currentTarget.getAttribute('data-category');
+                    page++;
+                    const hasMore = await loadCards(category, page, 'right');
+
+                    if(!hasMore) {
+                        page--;
+                    }
+                });
 
     }
 
@@ -76,7 +82,6 @@ async function showCardsByCategory(categories) {
 async function loadCards(category, page, direction) {
     let cardsDiv = document.querySelector(`#${category}`);
     let cardsContent = cardsDiv.querySelector(".cards-content");
-
     if (!cardsContent) {
         cardsContent = document.createElement("div");
         cardsContent.className = "cards-content";
