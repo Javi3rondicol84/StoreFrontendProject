@@ -37,8 +37,77 @@ async function setAllCarousels() {
 
         await showCardsByCategory(categories);
 
+        await addToCartOfUser();
+
     } catch (e) {
         console.log("Error de red");
+    }
+}
+
+async function addToCartOfUser() {
+    let addToCartsButtons = document.querySelectorAll(".cart-button");
+
+    addToCartsButtons.forEach(cartButton => {
+        cartButton.addEventListener("click", async () => {
+            if(!token) {
+                location.href = "/pages/login.html";
+                return;
+            }
+            else {
+
+                const decodedToken = parseJwt(token);
+
+                let username = decodedToken.sub;
+
+                let idProduct = cartButton.getAttribute("name");
+
+                await addToCart(idProduct, username);
+            }
+
+        });
+    });
+
+}
+
+//add product to cart of user
+async function addToCart(idProduct, username) {
+    let idProductData = Number(idProduct);
+    let urlCart = "http://localhost:8080/cart/add";
+
+    let userIdData = await getUserId(username);
+
+    let data = {
+        product: {
+            productId: idProductData
+        },
+        user: {
+            userId: userIdData
+        },
+        amount: 1
+    };
+
+    try {
+
+        let response = await fetch(urlCart, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(data)
+        });
+
+        if(!response.ok) {
+            console.log("error al intentar añadir el carrito");
+            return;
+        }
+
+        console.log("añadido al carrito exitosamente");
+
+
+    }
+    catch(e) {
+        console.log("error: "+e);
     }
 
 }
@@ -51,7 +120,7 @@ async function showCardsByCategory(categories) {
 
         let page = 0;
         let cardsDiv = document.querySelector(`#${categories[i]}`);
-        console.log(cardsDiv);
+
         await loadCards(categories[i], page);
 
         //cards -> cardSection -> carousel (of current cards)
@@ -62,6 +131,7 @@ async function showCardsByCategory(categories) {
 
 
         leftButton.addEventListener("click", async (event) => {
+
             const category = event.currentTarget.getAttribute('data-category');
            if (page > 0) {
                 page--;
@@ -120,18 +190,18 @@ async function loadCards(category, page, direction) {
                                 <div class="price-card">
                                     <p>$${product.price}</p>
                                 </div>
-                                <div class="amount-products-card">
+                 <!--               <div class="amount-products-card">
                                  <button>-</button>
                                     <p>1</p>
                                     <button>+</button>
-                                </div>
+                                </div>-->
                             </div>
                             <div class="card-buttons">
                                 <div class="add-to-cart-btn">
-                                    <button><img src="files/shopping-cart-card.png"></button>
+                                    <button class="cart-button" name="${product.productId}"><img src="files/shopping-cart-card.png"></button>
                                 </div>
                                 <div class="buy-btn">
-                                    <button class="cartButton">Comprar</button>
+                                    <button class="cartButton" name="${product.productId}">Comprar</button>
                                 </div>
                             </div>
                         </div>
@@ -144,4 +214,25 @@ async function loadCards(category, page, direction) {
         return false;
     }
 
+}
+
+//get user id from username
+async function getUserId(username) {
+    let urlUsername = "http://localhost:8080/auth/getUserId/"+username;
+
+    let response = await fetch(urlUsername, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    });
+
+    if(!response.ok) {
+        console.log("error al obtener userId");
+        return;
+    }
+
+    let userId = await response.json();
+
+    return userId;
 }

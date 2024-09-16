@@ -575,6 +575,45 @@ nav {
     height: 100%;
 }
 
+/* cart section - items (FALTA MEJORAR)*/
+
+.cartSection {
+    display: flex;
+    width: 100%;
+    background-color: #d89d9d;
+    min-width: 50em;
+}
+
+.cartItems {
+    background-color: #33960F;
+    min-height: 50em;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cartItem {
+    margin: 1em 0 1em 0;
+    background-color: #888181;
+    height: 8em;
+    width: 80%;
+}
+
+.titleProductCart {
+    display: flex;
+    justify-content: center;
+}
+
+.titleProductCart h2 {
+    text-align: center;
+}
+
+.titleProductCart div {
+    display: flex;
+}
+
+
     /* footer */
 
 footer {
