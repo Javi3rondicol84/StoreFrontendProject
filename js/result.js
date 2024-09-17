@@ -1,22 +1,30 @@
 "use strict";
 
-const apiSearchRoute = "http://localhost:8080/products/search?keyword=";
-const apiCategoryRoute = "http://localhost:8080/products/category?category=";
-
 window.onload = function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const searchValue = urlParams.get('search');
-
     let resultsCardsDiv = document.querySelector(".resultsCards");
 
     showResults();
 
+    //show search results(categories or search input)
     async function showResults() {
+        let apiRoute = "http://localhost:8080/products/";
+        let urlParams = new URLSearchParams(window.location.search);
+        let searchValue;
+
+        if(location.search.includes("search")) {
+            apiRoute += "search?keyword=";
+            searchValue = urlParams.get('search');
+        }
+        else if(location.search.includes("category")) {
+            apiRoute += "category?category=";
+            searchValue = urlParams.get('category');
+        }
+
         resultsCardsDiv.innerHTML = "";
 
         try {
 
-            let response = await fetch(apiSearchRoute+searchValue);
+            let response = await fetch(apiRoute+searchValue);
 
             if(!response.ok) {
                 console.log("fallido, sin productos");
@@ -35,9 +43,7 @@ window.onload = function() {
                                 <p>${product.price}</p>
                             </div>
                         </div>
-                    
                     `
-
             });
 
 

@@ -2,7 +2,6 @@
 
 const token = localStorage.getItem('token');
 
-
 //search products section
 
 document.querySelector("#searchButton").addEventListener("click", searchResult);
@@ -95,5 +94,74 @@ function parseJwt (token) {
     } catch (e) {
         console.error("Token no válido o malformado", e);
         return null;
+    }
+}
+
+
+
+/* dropdown menu section */
+
+let dropdownMenuLi = document.querySelector(".dropdownLiButton");
+
+let dropdownMenu = document.querySelector(".categoriesMenuDropdown");
+
+dropdownMenuLi.addEventListener("mouseenter", function() {
+
+    dropdownMenu.classList.toggle("hidden");
+
+    let ulCategories = document.querySelector(".categoriesLi");
+
+    if(ulCategories.querySelectorAll('li').length === 0) {
+        addCategoriesLi(ulCategories);
+    }
+});
+
+dropdownMenu.addEventListener("mouseleave", function() {
+
+    dropdownMenu.classList.toggle("hidden");
+});
+
+async function addCategoriesLi(ulCategories) {
+
+    try {
+        let response = await fetch(api+"categories/");
+
+        if(!response.ok) {
+            console.log("error bad request");
+        }
+
+        let categories = await response.json();
+
+        categories.forEach(category => {
+
+            if (window.location.pathname.includes('result.html')) {
+
+                ulCategories.innerHTML +=
+                    `
+                    <a href="result.html?category=${category}"><li>${category}</li></a>
+                
+                `
+            }
+            else if (window.location.pathname.includes('cart.html')) {
+
+                ulCategories.innerHTML +=
+                    `
+                    <a href="result.html?category=${category}"><li>${category}</li></a>
+                
+                `
+            }
+            else {
+
+                ulCategories.innerHTML +=
+                    `
+                    <a href="pages/result.html?category=${category}"><li>${category}</li></a>
+                
+                `
+            }
+
+        });
+    }
+    catch(e) {
+        console.log(e);
     }
 }

@@ -154,7 +154,6 @@ header div {
     display: flex;
 }
 
-
 .search-button-div .drowdown-menu p {
     color: var(--white-main-color);
     font-size: 1.3em; /* Reducido ligeramente */
@@ -239,6 +238,32 @@ nav {
 .nav-first-part ul li, .nav-first-second ul li {
     padding-left: 1.5em; /* Ajustado */
     padding-right: 1.5em; /* Ajustado */
+}
+
+/* dropdown menu */
+
+
+.categoriesMenuDropdown {
+    background-color: var(--secondaryColor);
+    width: 13em;
+    position: absolute;
+    left: 30%;
+    display: flex;
+
+}
+
+.hidden {
+    display: none;
+}
+
+.categoriesLi {
+    list-style: none;
+}
+
+.categoriesLi li {
+    color: #fff;
+    padding: 0.5em 0 0.5em 0.5em;
+    border-radius: 1.5em;
 }
 
 /* main section */
