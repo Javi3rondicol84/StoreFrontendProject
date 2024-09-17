@@ -10,7 +10,7 @@ showAllProductsInCart();
 
 async function showAllProductsInCart() {
 
-    if(token) {
+
         let productsCartDiv = document.querySelector(".cartItems");
         productsCartDiv.innerHTML = "";
         const decodedToken = parseJwt(token);
@@ -98,12 +98,6 @@ async function showAllProductsInCart() {
         catch(e) {
             console.log("error de red"+e);
         }
-
-
-    }
-    else {
-        window.location.href = "../index.html";
-    }
 
 }
 

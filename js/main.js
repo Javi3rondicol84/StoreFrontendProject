@@ -2,6 +2,38 @@
 
 const token = localStorage.getItem('token');
 
+
+//search products section
+
+document.querySelector("#searchButton").addEventListener("click", searchResult);
+
+
+async function searchResult(e) {
+    e.preventDefault();
+
+    window.location.href = "/pages/result.html";
+
+    let searchValue = document.querySelector("#searchValue").value;
+
+    if (window.location.pathname.includes('result.html')) {
+        // Si ya estamos en result.html, redireccionamos sin duplicar 'pages/'
+        window.location.href = `result.html?search=${encodeURIComponent(searchValue)}`;
+
+        alert("s");
+    }
+    else if(window.location.pathname.includes('cart.html')) {
+        window.location.href = `result.html?search=${encodeURIComponent(searchValue)}`;
+    }
+    else {
+        // Redireccionamos a result.html desde cualquier otra página
+        window.location.href = `pages/result.html?search=${encodeURIComponent(searchValue)}`;
+    }
+
+
+}
+
+
+
 //anchor login - register in nav
 let loginRegisterDiv = document.querySelector(".nav-first-second");
 
@@ -10,7 +42,6 @@ main();
 async function main() {
 //if user is logged
     if(token) {
-
         loginRegisterDiv.innerHTML = "";
         const decodedToken = parseJwt(token);
         const currentTime = Math.floor(Date.now() / 1000);
