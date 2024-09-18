@@ -137,6 +137,8 @@ header div {
     height: 100%;
 }
 
+
+/* dropdown menu and search button-input nav section */
 .search-button-div {
     width: 35em; /* Ajustado proporcionalmente */
     height: 2.62em; /* Reducido 1em */
@@ -144,6 +146,8 @@ header div {
     justify-content: space-between;
 }
 
+
+/* dropdown menu categories nav */
 .search-button-div .drowdown-menu {
     width: 10.7em; /* Reducido proporcionalmente */
     font-size: 1.28em; /* Reducido 1em */
@@ -160,8 +164,8 @@ header div {
 }
 
 .search-button-div .drowdown-menu button {
-    width: 1.2em; /* Ajustado */
-    height: 1.8em; /* Ajustado */
+    width: 1.2em;
+    height: 1.8em;
     border: 0;
     background-color: var(--red-main-color);
 }
@@ -171,33 +175,40 @@ header div {
     height: 100%;
 }
 
+
+/* search button nav */
+
 .search-button-div .search-input {
-    width: 21.25em; /* Ajustado proporcionalmente */
-    height: 2.66em; /* Reducido 1em */
+    width: 21.25em;
+    height: 2.66em;
 }
 
-.search-button-div .search-input input {
-    width: 100%;
+.search-button-div .search-input form {
+    display: flex;
+    width: 21.25em;
+    height: 2.66em;
+}
+
+.search-button-div .search-input form input {
+    width: 85%;
     height: 100%;
-    font-size: 1.23em; /* Ajustado proporcionalmente */
+    font-size: 1.23em;
     padding: 0 0.2em;
 }
 
-.search-button-div .search-button {
-    width: 2.65em; /* Reducido 1em */
-    height: 2.66em; /* Reducido 1em */
-}
-
-.search-button-div .search-button button {
-    width: 100%;
-    height: 100%;
+.search-button-div .search-input form button {
+    width: 15%;
     border: 0;
 }
 
-.search-button-div .search-button img {
+.search-button-div .search-input form button img {
     width: 100%;
     height: 100%;
 }
+
+
+
+/* cart button nav */
 
 .cart-button {
     width: 3.5em; /* Reducido 1em */

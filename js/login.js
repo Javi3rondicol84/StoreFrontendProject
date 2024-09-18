@@ -1,16 +1,88 @@
 "use strict";
-const url = "http://localhost:8080/auth/login";
 
-let formLogin = document.querySelector("#formLogin");
-let loginmessage = document.querySelector("#login-message");
+let url;
 
-if (formLogin) {
-    formLogin.addEventListener("submit", logging);
+
+if(location.pathname.includes("login")) {
+    url = "http://localhost:8080/auth/login";
+}
+else if(location.pathname.includes("register")) {
+    url = "http://localhost:8080/auth/register";
 }
 
-async function logging(e) {
+let formLogin = document.querySelector("#formLogin");
+let loginMessage = document.querySelector("#login-message");
+let formRegister = document.querySelector("#formRegister");
+let registerMessage = document.querySelector("#register-message");
+
+if (formLogin) {
+    formLogin.addEventListener("submit", login);
+}
+
+if(formRegister) {
+    formRegister.addEventListener("submit", register);
+}
+else {
+    alert("ss");
+}
+
+async function register(e) {
     e.preventDefault();
-    loginmessage.innerHTML = "";
+    registerMessage.innerHTML = "";
+    let formData = new FormData(formRegister);
+
+    let username = formData.get('username');
+    let pass1 = formData.get('pass1');
+    let pass2 = formData.get('pass2');
+    let email = formData.get('email');
+
+    let data = {
+        "username": username,
+        "password": pass1,
+        "email": email
+    }
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(data),
+        });
+
+        const responseData = await response.json();
+        const token = responseData.token;
+
+        localStorage.setItem('token', token);
+
+        if(pass1 !== pass2) {
+            registerMessage.innerHTML = "Las contraseñas no coinciden";
+            return;
+        }
+
+        if(!response.ok) {
+            registerMessage.innerHTML = "El username o la contraseña son incorrectos";
+        }
+        else {
+            registerMessage.innerHTML = "El usuario se registró correctamente.";
+
+            setTimeout(() => {
+                window.location.href = "../index.html"
+            }, 800);
+
+        }
+
+    }
+    catch(error) {
+        console.log(error);
+    }
+
+}
+
+async function login(e) {
+    e.preventDefault();
+    loginMessage.innerHTML = "";
     let formData = new FormData(formLogin);
 
     let username = formData.get('username');
@@ -36,10 +108,10 @@ async function logging(e) {
         localStorage.setItem('token', token);
 
         if(!response.ok) {
-            loginmessage.innerHTML = "El username o la contraseña son incorrectos";
+            loginMessage.innerHTML = "El username o la contraseña son incorrectos";
         }
         else {
-            loginmessage.innerHTML = "El usuario se ingreso correctamente.";
+            loginMessage.innerHTML = "El usuario se ingreso correctamente.";
 
            setTimeout(() => {
                 window.location.href = "../index.html"

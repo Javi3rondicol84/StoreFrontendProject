@@ -2,6 +2,8 @@
 
 const token = localStorage.getItem('token');
 
+const apiMenu= "http://localhost:8080/products/";
+
 //search products section
 
 document.querySelector("#searchButton").addEventListener("click", searchResult);
@@ -16,16 +18,16 @@ async function searchResult(e) {
 
     if (window.location.pathname.includes('result.html')) {
         // Si ya estamos en result.html, redireccionamos sin duplicar 'pages/'
-        window.location.href = `result.html?search=${encodeURIComponent(searchValue)}`;
+        window.location.href = `/result.html?search=${encodeURIComponent(searchValue)}`;
 
         alert("s");
     }
     else if(window.location.pathname.includes('cart.html')) {
-        window.location.href = `result.html?search=${encodeURIComponent(searchValue)}`;
+        window.location.href = `/result.html?search=${encodeURIComponent(searchValue)}`;
     }
     else {
         // Redireccionamos a result.html desde cualquier otra página
-        window.location.href = `pages/result.html?search=${encodeURIComponent(searchValue)}`;
+        window.location.href = `/pages/result.html?search=${encodeURIComponent(searchValue)}`;
     }
 
 
@@ -62,8 +64,8 @@ async function main() {
             localStorage.removeItem('token');
             loginRegisterDiv.innerHTML = `
               <ul>
-                    <li><a href="pages/login.html">Iniciar sesion</a></li>
-                    <li><a href="pages/register.html">Registrarse</a></li>
+                    <li><a href="/pages/login.html">Iniciar sesion</a></li>
+                    <li><a href="/pages/register.html">Registrarse</a></li>
               </ul> `;
         }
     }
@@ -71,8 +73,8 @@ async function main() {
 
         loginRegisterDiv.innerHTML = ` 
               <ul>
-                    <li><a href="pages/login.html">Iniciar sesion</a></li>
-                    <li><a href="pages/register.html">Registrarse</a></li>
+                    <li><a href="/pages/login.html">Iniciar sesion</a></li>
+                    <li><a href="/pages/register.html">Registrarse</a></li>
               </ul>
                     `;
     }
@@ -124,7 +126,7 @@ dropdownMenu.addEventListener("mouseleave", function() {
 async function addCategoriesLi(ulCategories) {
 
     try {
-        let response = await fetch(api+"categories/");
+        let response = await fetch(apiMenu+"categories/");
 
         if(!response.ok) {
             console.log("error bad request");
