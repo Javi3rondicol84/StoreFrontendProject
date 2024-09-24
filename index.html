@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
+    <title>Inicio | E-CommerceShop</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles/style.css" type="text/css">
+    <link rel="icon" href="/files/mainIco.png">
 </head>
 <body>
     <header>
@@ -21,6 +22,11 @@
                     <button class="dropdownLiButton"><img src="/files/down-user.png"></button>
                 </div>
 
+                <section class="categoriesMenuDropdown hidden">
+                    <ul class="categoriesLi">
+
+                    </ul>
+                </section>
 
                 <div class="search-input">
                     <form>
@@ -51,55 +57,56 @@
     </header>
 
     <main>
-        <section class="categoriesMenuDropdown hidden">
-            <ul class="categoriesLi">
 
-            </ul>
-        </section>
-        <section class="main-banner-carousel">
-            <img src="files/main-banner.webp">
-            <div class="main-banner-btns">
-                <button class="main-banner-btn"></button>
-                <button class="main-banner-btn"></button>
-                <button class="main-banner-btn"></button>
+
+            <section class="main-banner-carousel">
+                <img src="files/main-banner.webp">
+                <div class="main-banner-btns">
+                    <button class="main-banner-btn"></button>
+                    <button class="main-banner-btn"></button>
+                    <button class="main-banner-btn"></button>
+                </div>
+            </section>
+
+           <section class="all-carousels"></section>
+
+            <footer>
+            <div class="footer-lists">
+                <div class="first-lists">
+                    <div>
+                        <h2>Categorias</h2>
+                        <ul>
+                            <li>s</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2>Sobre nosotros</h2>
+                        <ul>
+                            <li>s</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2>Contacto</h2>
+                        <ul>
+                            <li>s</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="second-lists">
+                    <div>
+                        <h2>Metodos de pago</h2>
+                        <ul>
+                            <li>s</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </section>
-        <section class="all-carousels"></section>
+        </footer>
+
+
     </main>
 
-    <footer>
-        <div class="footer-lists">
-            <div class="first-lists">
-                <div>
-                    <h2>Categorias</h2>
-                    <ul>
-                        <li>s</li>
-                    </ul>
-                </div>
-                <div>
-                    <h2>Sobre nosotros</h2>
-                    <ul>
-                        <li>s</li>
-                    </ul>
-                </div>
-                <div>
-                    <h2>Contacto</h2>
-                    <ul>
-                        <li>s</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="second-lists">
-                <div>
-                    <h2>Metodos de pago</h2>
-                    <ul>
-                        <li>s</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <script src="/js/main.js"></script>
     <script src="/js/carouselsHome.js"></script>

@@ -22,9 +22,6 @@ if (formLogin) {
 if(formRegister) {
     formRegister.addEventListener("submit", register);
 }
-else {
-    alert("ss");
-}
 
 async function register(e) {
     e.preventDefault();
@@ -42,41 +39,43 @@ async function register(e) {
         "email": email
     }
 
-    try {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(data),
-        });
-
-        const responseData = await response.json();
-        const token = responseData.token;
-
-        localStorage.setItem('token', token);
-
-        if(pass1 !== pass2) {
-            registerMessage.innerHTML = "Las contraseñas no coinciden";
-            return;
-        }
-
-        if(!response.ok) {
-            registerMessage.innerHTML = "El username o la contraseña son incorrectos";
-        }
-        else {
-            registerMessage.innerHTML = "El usuario se registró correctamente.";
-
-            setTimeout(() => {
-                window.location.href = "../index.html"
-            }, 800);
-
-        }
-
+    if(pass1 !== pass2) {
+        registerMessage.innerHTML = "Las contraseñas no coinciden";
     }
-    catch(error) {
-        console.log(error);
+    else {
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(data),
+            });
+
+            const responseData = await response.json();
+            const token = responseData.token;
+
+            localStorage.setItem('token', token);
+
+            if(!response.ok) {
+                registerMessage.innerHTML = "El username o la contraseña son incorrectos";
+            }
+            else {
+                registerMessage.innerHTML = "El usuario se registró correctamente.";
+
+                setTimeout(() => {
+                    window.location.href = "../index.html"
+                }, 800);
+
+            }
+
+        }
+        catch(error) {
+            console.log(error);
+        }
     }
+
+
 
 }
 

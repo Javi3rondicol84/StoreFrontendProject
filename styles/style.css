@@ -255,12 +255,12 @@ nav {
 
 
 .categoriesMenuDropdown {
-    background-color: var(--secondaryColor);
+    background-color: var(--red-terciary-color);
     width: 13em;
     position: absolute;
     left: 30%;
     display: flex;
-
+    top: 10.3%;
 }
 
 .hidden {
@@ -277,13 +277,15 @@ nav {
     border-radius: 1.5em;
 }
 
+
+
+
 /* main section */
 
 /* main-banner-carousel */
 .main-banner-carousel {
     width: 100%;
     height: 25em;
-    position: relative;
 }
 
 .main-banner-carousel .main-banner-btns {
@@ -292,7 +294,7 @@ nav {
     display: flex;
     justify-content: space-between;
     position: absolute;
-    bottom: 10%;
+    bottom: 20%;
     left: 50%;
 }
 
@@ -314,7 +316,6 @@ nav {
 .all-carousels {
     display: flex;
     align-items: center;
-    position: relative;
     flex-direction: column;
 }
 

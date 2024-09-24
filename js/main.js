@@ -18,12 +18,12 @@ async function searchResult(e) {
 
     if (window.location.pathname.includes('result.html')) {
         // Si ya estamos en result.html, redireccionamos sin duplicar 'pages/'
-        window.location.href = `/result.html?search=${encodeURIComponent(searchValue)}`;
+        window.location.href = `/pages/result.html?search=${encodeURIComponent(searchValue)}`;
 
         alert("s");
     }
     else if(window.location.pathname.includes('cart.html')) {
-        window.location.href = `/result.html?search=${encodeURIComponent(searchValue)}`;
+        window.location.href = `/pages/result.html?search=${encodeURIComponent(searchValue)}`;
     }
     else {
         // Redireccionamos a result.html desde cualquier otra página
@@ -140,7 +140,7 @@ async function addCategoriesLi(ulCategories) {
 
                 ulCategories.innerHTML +=
                     `
-                    <a href="result.html?category=${category}"><li>${category}</li></a>
+                    <a href="/pages/result.html?category=${category}"><li>${category}</li></a>
                 
                 `
             }
@@ -148,7 +148,7 @@ async function addCategoriesLi(ulCategories) {
 
                 ulCategories.innerHTML +=
                     `
-                    <a href="result.html?category=${category}"><li>${category}</li></a>
+                    <a href="/pages/result.html?category=${category}"><li>${category}</li></a>
                 
                 `
             }
@@ -156,7 +156,7 @@ async function addCategoriesLi(ulCategories) {
 
                 ulCategories.innerHTML +=
                     `
-                    <a href="pages/result.html?category=${category}"><li>${category}</li></a>
+                    <a href="/pages/result.html?category=${category}"><li>${category}</li></a>
                 
                 `
             }
