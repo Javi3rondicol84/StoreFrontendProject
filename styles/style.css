@@ -614,41 +614,185 @@ nav {
 
 /* cart section - items (FALTA MEJORAR)*/
 
+
+
+/* Estilo general de la sección del carrito */
 .cartSection {
     display: flex;
-    width: 100%;
-    background-color: #d89d9d;
-    min-width: 50em;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    gap: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
+/* Estilo de los items del carrito */
 .cartItems {
-    background-color: #33960F;
-    min-height: 50em;
-    width: 60%;
+    flex: 2;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.cartItems::-webkit-scrollbar {
+    width: 8px;
+}
+
+.cartItems::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+/* Estilo del resumen de la compra */
+.purchaseSummary {
+    flex: 1;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.cartItem {
-    margin: 1em 0 1em 0;
-    background-color: #888181;
-    height: 8em;
-    width: 80%;
-}
-
-.titleProductCart {
-    display: flex;
-    justify-content: center;
-}
-
-.titleProductCart h2 {
     text-align: center;
 }
 
+/* Títulos dentro del resumen de compra */
+.purchaseSummary h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.purchaseSummary h4 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+/* Texto del total de la compra */
+#totalPurchase {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #e74c3c;
+    margin-bottom: 2rem;
+}
+
+/* Botón de comprar */
+.purchaseSummary button {
+    background-color: #3498db;
+    color: white;
+    font-size: 1.2rem;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.purchaseSummary button:hover {
+    background-color: #2980b9;
+}
+
+/* Estilo del contenedor de cada ítem del carrito */
+.cartItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.cartItem:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para el contenedor del nombre del producto, botones y precio */
+.titleProductCart {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 2;
+}
+
+.titleProductCart h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.titleProductCart p {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #666;
+}
+
+/* Estilo para el contador de cantidad (incrementar/decrementar) */
 .titleProductCart div {
     display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
+
+.amountSelected {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+/* Botones de incremento y decremento */
+.incrementAmount, .decrementAmount {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.incrementAmount:hover, .decrementAmount:hover {
+    background-color: #2980b9;
+}
+
+/* Botón para borrar del carrito */
+.deleteFromCart {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.deleteFromCart:hover {
+    background-color: #c0392b;
+}
+
+/* Estilo para el precio */
+.titleProductCart p:last-of-type {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #2ecc71;
+}
+
 
 
 /* results page (MEJORAR ESTILO) */

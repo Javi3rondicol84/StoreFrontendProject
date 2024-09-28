@@ -91,38 +91,36 @@ async function login(e) {
         "username": username,
         "password": pass
     }
-    
+
+
     try {
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                'Content-type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(data),
         });
 
+        if (!response.ok) {
+            loginMessage.innerHTML = "El username o la contraseña son incorrectos";
+            return;  // Termina la ejecución si la respuesta no es correcta
+        }
+
         const responseData = await response.json();
         const token = responseData.token;
-
+        console.log("El token es: " + token);
         localStorage.setItem('token', token);
 
-        if(!response.ok) {
-            loginMessage.innerHTML = "El username o la contraseña son incorrectos";
-        }
-        else {
-            loginMessage.innerHTML = "El usuario se ingreso correctamente.";
+        loginMessage.innerHTML = "El usuario se ingresó correctamente.";
 
-           setTimeout(() => {
-                window.location.href = "../index.html"
-            }, 800);
-            
-        }
+        setTimeout(() => {
+            window.location.href = "../index.html";
+        }, 800);
 
-    }
-    catch(error) {
+    } catch (error) {
         console.log(error);
     }
-
 
   
        
