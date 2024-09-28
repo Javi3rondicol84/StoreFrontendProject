@@ -102,15 +102,17 @@ async function login(e) {
             body: JSON.stringify(data),
         });
 
-        if (!response.ok) {
+        if (response.status === 403) {
             loginMessage.innerHTML = "El username o la contraseña son incorrectos";
             return;  // Termina la ejecución si la respuesta no es correcta
         }
 
+        console.log("localstorage antes de borrar token anterior"+ localStorage.getItem("token"));
+        localStorage.removeItem("token");
         const responseData = await response.json();
         const token = responseData.token;
-        console.log("El token es: " + token);
         localStorage.setItem('token', token);
+        console.log("localstorage despues de borrar token anterior"+ localStorage.getItem("token"));
 
         loginMessage.innerHTML = "El usuario se ingresó correctamente.";
 

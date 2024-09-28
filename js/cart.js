@@ -15,7 +15,7 @@ async function showAllProductsInCart() {
         productsCartDiv.innerHTML = "";
         const decodedToken = parseJwt(token);
         let userId = await getUserId(decodedToken.sub);
-
+        console.log(userId);
         const urlProducts = "http://localhost:8080/cart/products/"+userId;
 
         try {
@@ -25,6 +25,14 @@ async function showAllProductsInCart() {
                     "Authorization" : `Bearer ${token}`
                 }
             })
+
+            if(response.status === 403) {
+                console.log("error de permisos con "+decodedToken.sub);
+                return;
+            }
+            else if(response.status === 200) {
+                console.log("ingreso correcto con "+decodedToken.sub);
+            }
 
             let allProductsInCart = await response.json();
 
