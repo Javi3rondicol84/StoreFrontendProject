@@ -54,14 +54,24 @@ async function addToCartOfUser() {
                 return;
             }
             else {
-
                 const decodedToken = parseJwt(token);
 
                 let username = decodedToken.sub;
 
                 let idProduct = cartButton.getAttribute("name");
 
-                await addToCart(idProduct, username);
+                let imgCart = cartButton.firstElementChild;
+
+                if(imgCart.src.includes("/files/shopping-cart-card.png")) {
+                    imgCart.src = "/files/added-to-cart.png";
+                    await addToCart(idProduct, username);
+                }
+                else if(imgCart.src.includes("/files/added-to-cart.png")){
+                    imgCart.src = "/files/shopping-cart-card.png";
+                    await deleteFromCart(idProduct, username);
+                }
+
+
             }
 
         });
@@ -98,7 +108,8 @@ async function addToCart(idProduct, username) {
         });
 
         if(!response.ok) {
-            console.log("error al intentar añadir el carrito");
+            let error = await response.text();
+            console.log(error);
             return;
         }
 
@@ -108,6 +119,37 @@ async function addToCart(idProduct, username) {
     }
     catch(e) {
         console.log("error: "+e);
+    }
+
+}
+
+async function deleteFromCart(idProduct, username) {
+    let idProductData = Number(idProduct);
+
+    let userIdData = await getUserId(username);
+
+    let cartId = await getCartId(idProductData, userIdData);
+
+    let urlDelete = "http://localhost:8080/cart/delete/"+cartId;
+
+    try {
+        let response = await fetch(urlDelete, {
+            "method": "DELETE",
+            "headers": {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        if(!response.ok) {
+            console.log("no se pudo eliminar el item con el id: "+cartId);
+            return;
+        }
+
+        console.log("item eliminado correctamente");
+
+    }
+    catch(e) {
+        console.log("error de red");
     }
 
 }
@@ -181,7 +223,7 @@ async function loadCards(category, page, direction) {
                     cardsContent.innerHTML += `
                           <div class="card" id="${product.productId}">
                             <div class="card-image">
-                                <img src="files/add-product.png">
+                                <img src="/files/add-product.png">
                             </div>
                             <div class="card-product-name">
                                 <h3>${product.productName}</h3>
@@ -198,7 +240,7 @@ async function loadCards(category, page, direction) {
                             </div>
                             <div class="card-buttons">
                                 <div class="add-to-cart-btn">
-                                    <button class="cart-button" name="${product.productId}"><img src="files/shopping-cart-card.png"></button>
+                                    <button class="cart-button" name="${product.productId}"><img src="/files/shopping-cart-card.png"></button>
                                 </div>
                                 <div class="buy-btn">
                                     <button class="cartButton" name="${product.productId}">Comprar</button>
@@ -235,4 +277,24 @@ async function getUserId(username) {
     let userId = await response.json();
 
     return userId;
+}
+
+async function getCartId(productId, userId) {
+    let urlCartId = "http://localhost:8080/cart/getCartIdFromUser/"+userId+"/"+productId;
+
+    let response = await fetch(urlCartId, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    });
+
+    if(!response.ok) {
+        console.log("error al obtener userId");
+        return;
+    }
+
+    let cartId = await response.json();
+
+    return cartId;
 }
